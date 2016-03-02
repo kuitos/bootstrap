@@ -692,11 +692,11 @@ angular.module('ui.bootstrap.modal', ['ui.bootstrap.stackedMap'])
                       ctrlInstance.$close = modalScope.$close;
                       ctrlInstance.$dismiss = modalScope.$dismiss;
                       angular.extend(ctrlInstance, providedScope);
-
                     }
 
                     ctrlInstance = ctrlInstantiate();
-                    if (angular.isFunction(ctrlInstance.$onInit)) {
+
+                    if (modalOptions.bindToController && angular.isFunction(ctrlInstance.$onInit)) {
                       ctrlInstance.$onInit();
                     }
 
