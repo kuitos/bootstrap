@@ -685,7 +685,6 @@ angular.module('ui.bootstrap.modal', ['ui.bootstrap.stackedMap'])
                   // @see https://github.com/angular/angular.js/blob/master/src/ng/controller.js#L126
                   ctrlInstantiate = $controller(modalOptions.controller, ctrlLocals, true);
                   if (modalOptions.controllerAs) {
-
                     ctrlInstance = ctrlInstantiate.instance;
 
                     if (modalOptions.bindToController) {
@@ -696,13 +695,13 @@ angular.module('ui.bootstrap.modal', ['ui.bootstrap.stackedMap'])
 
                     ctrlInstance = ctrlInstantiate();
 
-                    if (modalOptions.bindToController && angular.isFunction(ctrlInstance.$onInit)) {
-                      ctrlInstance.$onInit();
-                    }
-
                     modalScope[modalOptions.controllerAs] = ctrlInstance;
                   } else {
-                    ctrlInstantiate();
+                    ctrlInstance = ctrlInstantiate();
+                  }
+
+                  if (angular.isFunction(ctrlInstance.$onInit)) {
+                    ctrlInstance.$onInit();
                   }
                 }
 
